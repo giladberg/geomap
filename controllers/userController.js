@@ -9,6 +9,7 @@ exports.findOrCreateUser = async token => {
 
   const user = await checkIfUserExists(googleUser.email);
   // if user exisst, return then' othewise, create new yser
+
   return user ? user : createNewUser(googleUser);
 };
 
@@ -31,5 +32,6 @@ const checkIfUserExists = async email =>
 const createNewUser = googleUser => {
   const { name, email, picture } = googleUser;
   const user = { name, email, picture };
+
   return new User(user).save();
 };
